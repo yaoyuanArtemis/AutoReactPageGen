@@ -1,5 +1,17 @@
 import inquirer from "inquirer";
 import fs from "fs";
+/* 
+    {
+    name: "stores",
+    slider: "none",
+    content: {
+      use: "tableContent",
+      rollAble: true,
+      pageAble: true,
+    },
+    data: {},
+  },
+*/
 
 function createBatchConfigFile(res) {
   // 文件读取模块
@@ -8,6 +20,7 @@ function createBatchConfigFile(res) {
       templatePlace(item);
     });
   } else {
+    console.log(666, res);
     templatePlace(res);
   }
 
@@ -60,7 +73,7 @@ inquirer
         .prompt([
           {
             type: "input",
-            name: "文件名",
+            name: "name",
             message: "请输入文件名",
           },
           {
@@ -87,12 +100,13 @@ inquirer
           },
         ])
         .then((res) => {
+          console.log(222, res);
           let _o = {};
           _o.name = res.name;
-          _o.type = res.type;
+          _o.slider = res.slider;
           _o.data = {};
           _o.content = {
-            use: res.use,
+            use: res.content,
             rollAble: res.rollAble,
             pageAble: res.pageAble,
           };
